@@ -24,8 +24,11 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
     
-    - name: NuGet Restore
-      run: nuget restore MasterOfPuppets.sln
+    - name: Add NuGet package source if needed
+      run: dotnet nuget add source https://api.nuget.org/v3/index.json --name nuget.org
+    
+    - name: Restore packages
+      run: dotnet restore MasterOfPuppets.sln --source https://api.nuget.org/v3/index.json
     
     - name: Build the application
       run: msbuild MasterOfPuppets.sln /t:Build /p:Configuration=Release /p:Platform="Any CPU"
