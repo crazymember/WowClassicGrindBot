@@ -24,8 +24,8 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
     
-    - name: Restore packages
-      run: msbuild MasterOfPuppets.sln /t:Restore /p:Configuration=Release
+    - name: NuGet Restore
+      run: nuget restore MasterOfPuppets.sln
     
     - name: Build the application
       run: msbuild MasterOfPuppets.sln /t:Build /p:Configuration=Release /p:Platform="Any CPU"
